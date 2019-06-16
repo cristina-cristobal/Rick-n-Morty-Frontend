@@ -1,17 +1,13 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { Card } from 'semantic-ui-react'
 import CharacterCard from '../components/CharacterCard'
 
-const CharacterContainer = ({allCharacters}) => {
-  // debugger
+export default class CharacterContainer extends Component {
+  render(){
     return(
-      <Card.Group itemsPerRow={4} allcharacters={allCharacters}>
-        {allCharacters.map((character) => (
-          <CharacterCard character={character} key={character.id}/>
-          ))
-        }
-      </Card.Group>
+      <div>
+        {this.props.allCharacters.map(characterObj => <CharacterCard key={characterObj.id} character={characterObj}/>)}
+      </div>
     )
   }
-
-export default CharacterContainer
+}
