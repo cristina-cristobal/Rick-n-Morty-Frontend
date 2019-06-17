@@ -3,11 +3,10 @@ import CharacterContainer from './CharacterContainer'
 
 class HomeBody extends Component {
   render(){
-    // debugger
     return(
       <div>
         <p>Character Container</p>
-        <CharacterContainer  allCharacters={this.props.allCharacters}/>
+        <CharacterContainer allCharacters={this.props.allCharacters} />
       </div>
     )
   }

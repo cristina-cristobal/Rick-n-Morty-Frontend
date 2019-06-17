@@ -37,9 +37,8 @@ class App extends React.Component{
       return(
         <div>
           <Header />
-          <HomeBody allcharacters={this.state.allCharacters}/>
-          <FavoritesBody
-            myfavorites={this.state.myFavorites}/>
+          <FavoritesBody myFavorites={this.state.myFavorites}/>
+          <HomeBody allCharacters={this.state.allCharacters}/>
         </div>
       )
    }
