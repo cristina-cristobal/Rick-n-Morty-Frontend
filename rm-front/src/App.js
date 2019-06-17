@@ -40,6 +40,14 @@ class App extends React.Component{
     })
   }
 
+  // will only render characters in CharacterContainer that are not in this.state.myFavorites
+  getAllCharacters = () => {
+    return this.state.allCharacters.filter(character => !this.state.myFavorites.includes(character))
+  }
+
+  // getFilteredCharacters = () => {
+  //   return this.getAllCharacters().filter(character => character.name.includes(this.state.searchTerm))
+  // }
 
    render(){
      // debugger
@@ -51,7 +59,7 @@ class App extends React.Component{
           handleCardClick={this.removeFromFavorites}
           />
           <HomeBody
-          allCharacters={this.state.allCharacters}
+          allCharacters={this.getAllCharacters()}
           handleCardClick={this.addToFavorites}
           />
         </div>
