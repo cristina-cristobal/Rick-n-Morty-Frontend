@@ -7,7 +7,12 @@ export default class CharacterContainer extends Component {
       <div className='ui five column grid'>
         <div className='row'>
             {this.props.allCharacters.map(characterObj =>
-              <CharacterCard key={characterObj.id} character={characterObj}/>)}
+              <CharacterCard
+              key={characterObj.id}
+              character={characterObj}
+              id={characterObj.id}
+              handleCardClick={this.props.handleCardClick}
+              />)}
         </div>
       </div>
     )

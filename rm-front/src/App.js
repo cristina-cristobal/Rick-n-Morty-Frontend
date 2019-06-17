@@ -26,19 +26,25 @@ class App extends React.Component{
     })
   }
 
-  // handleCardClick = () => {
-  //   this.setState({
-  //
-  //   })
-  // }
+  addToFavorites = (character) => {
+    let myFavoritesCopy = [...this.state.myFavorites]
+    this.setState({
+      myFavorites: [...myFavoritesCopy, character]
+    })
+  }
 
    render(){
      // debugger
       return(
         <div>
           <Header />
-          <FavoritesBody myFavorites={this.state.myFavorites}/>
-          <HomeBody allCharacters={this.state.allCharacters}/>
+          <FavoritesBody
+          myFavorites={this.state.myFavorites}
+          />
+          <HomeBody
+          allCharacters={this.state.allCharacters}
+          handleCardClick={this.addToFavorites}
+          />
         </div>
       )
    }
