@@ -33,6 +33,14 @@ class App extends React.Component{
     })
   }
 
+  removeFromFavorites = (characterObj) => {
+    let myFavoritesCopy = [...this.state.myFavorites]
+    this.setState({
+      myFavorites: [...myFavoritesCopy.filter(character => character !== characterObj)]
+    })
+  }
+
+
    render(){
      // debugger
       return(
@@ -40,6 +48,7 @@ class App extends React.Component{
           <Header />
           <FavoritesBody
           myFavorites={this.state.myFavorites}
+          handleCardClick={this.removeFromFavorites}
           />
           <HomeBody
           allCharacters={this.state.allCharacters}
