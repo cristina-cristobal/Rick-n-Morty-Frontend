@@ -12,6 +12,9 @@ export default class FavoritesContainer extends Component {
           character={characterObj}
           id={characterObj.id}
           handleCardClick={this.props.handleCardClick}
+          addToSelected={this.props.addToSelected}
+          selectedCharacters={this.props.selectedCharacters}
+          characters={this.props.characters}
           />)}
         </div>
       </div>

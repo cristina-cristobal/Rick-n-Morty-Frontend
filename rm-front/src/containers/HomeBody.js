@@ -8,6 +8,9 @@ class HomeBody extends Component {
         <p>Character Container</p>
         <CharacterContainer allCharacters={this.props.allCharacters}
         handleCardClick={this.props.handleCardClick}
+        addToSelected={this.props.addToSelected}
+        selectedCharacters={this.props.selectedCharacters}
+        characters={this.props.characters}
         />
       </div>
     )

@@ -11,7 +11,8 @@ class App extends React.Component{
     super()
     this.state = {
       allCharacters: [],
-      myFavorites: []
+      myFavorites: [],
+      selectedCharacters: []
     }
   }
 
@@ -45,9 +46,18 @@ class App extends React.Component{
     return this.state.allCharacters.filter(character => !this.state.myFavorites.includes(character))
   }
 
+  // If we want to create a search bar, use code below
   // getFilteredCharacters = () => {
   //   return this.getAllCharacters().filter(character => character.name.includes(this.state.searchTerm))
   // }
+
+  addToSelected = (character) => {
+    console.log('selecting character #', character.id)
+    let selectedCharactersCopy = [...this.state.selectedCharacters]
+    this.setState({
+      selectedCharacters: [...selectedCharactersCopy, character]
+    })
+  }
 
    render(){
      // debugger
@@ -57,10 +67,16 @@ class App extends React.Component{
           <FavoritesBody
           myFavorites={this.state.myFavorites}
           handleCardClick={this.removeFromFavorites}
+          addToSelected={this.addToSelected}
+          selectedCharacters={this.state.selectedCharacters}
+          characters={this.state.allCharacters}
           />
           <HomeBody
           allCharacters={this.getAllCharacters()}
           handleCardClick={this.addToFavorites}
+          selectedCharacters={this.state.selectedCharacters}
+          addToSelected={this.addToSelected}
+          characters={this.state.allCharacters}
           />
         </div>
       )
