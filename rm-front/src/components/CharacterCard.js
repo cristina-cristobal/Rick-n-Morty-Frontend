@@ -1,17 +1,16 @@
 import React from 'react'
 
 const CharacterCard = (props) => {
-  let {character: {image, name}} = props
+  let {character: {image, name, species, gender, status, origin, current_location}} = props
   console.log(props.character)
   return(
-    <div>
+    <fragment>
 
     {
       !props.selectedCharacters.includes(props.character) ?
 
     <div className='ui column'
-    onClick={() => {props.addToSelected(props.character)}}
-    onDoubleClick={() => {props.handleCardClick(props.character)}}>
+    onClick={() => {props.addToSelected(props.character)}}>
       <div className='ui card'>
         <img alt='o no!' src={image}/>
         <div className="content">
@@ -23,14 +22,35 @@ const CharacterCard = (props) => {
 
     :
 
-    <div>
-    Fill me!
+    <div className='ui column' onDoubleClick={() => {props.handleCardClick(props.character)}}>
+    <div className='ui card'>
+      <img alt='o no!' src={image}/>
+      <div className="content">
+      <div className="header">Name: {name}
+      <div>
+      Status: {status}
+      </div>
+      <div>
+      Species: {species}
+      </div>
+      <div>
+      Gender: {gender}
+      </div>
+      <div>
+      Origin: {origin}
+      </div>
+      <div>
+      Current Location: {current_location}
+      </div>
+      </div>
+      </div>
     </div>
+  </div>
 
 
   }
 
-</div>
+</fragment>
 
   )
 }
