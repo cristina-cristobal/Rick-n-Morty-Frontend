@@ -11,6 +11,7 @@ class HomeBody extends Component {
         addToSelected={this.props.addToSelected}
         selectedCharacters={this.props.selectedCharacters}
         characters={this.props.characters}
+        removeSelected={this.props.removeSelected}
         />
       </div>
     )

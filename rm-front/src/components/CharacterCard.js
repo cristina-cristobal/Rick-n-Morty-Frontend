@@ -2,9 +2,8 @@ import React from 'react'
 
 const CharacterCard = (props) => {
   let {character: {image, name, species, gender, status, origin, current_location}} = props
-  console.log(props.character)
   return(
-    <fragment>
+    <div>
 
     {
       !props.selectedCharacters.includes(props.character) ?
@@ -22,7 +21,8 @@ const CharacterCard = (props) => {
 
     :
 
-    <div className='ui column' onDoubleClick={() => {props.handleCardClick(props.character)}}>
+    <div className='ui column' onClick={() => {props.removeSelected(props.character)}}
+    onDoubleClick={() => {props.handleCardClick(props.character)}}>
     <div className='ui card'>
       <img alt='o no!' src={image}/>
       <div className="content">
@@ -50,7 +50,7 @@ const CharacterCard = (props) => {
 
   }
 
-</fragment>
+</div>
 
   )
 }

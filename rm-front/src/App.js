@@ -59,6 +59,12 @@ class App extends React.Component{
     })
   }
 
+  removeSelected = (character) => {
+    this.setState({
+      selectedCharacters: [...this.state.selectedCharacters.filter(char => char !== character)]
+    })
+  }
+
    render(){
      // debugger
       return(
@@ -70,6 +76,7 @@ class App extends React.Component{
           addToSelected={this.addToSelected}
           selectedCharacters={this.state.selectedCharacters}
           characters={this.state.allCharacters}
+          removeSelected={this.removeSelected}
           />
           <HomeBody
           allCharacters={this.getAllCharacters()}
@@ -77,6 +84,7 @@ class App extends React.Component{
           selectedCharacters={this.state.selectedCharacters}
           addToSelected={this.addToSelected}
           characters={this.state.allCharacters}
+          removeSelected={this.removeSelected}
           />
         </div>
       )
