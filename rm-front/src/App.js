@@ -12,7 +12,8 @@ class App extends React.Component{
     this.state = {
       allCharacters: [],
       myFavorites: [],
-      selectedCharacters: []
+      selectedCharacters: [],
+      userFavorites: []
     }
   }
 
@@ -24,6 +25,14 @@ class App extends React.Component{
       // debugger
       this.setState({
         allCharacters: allCharacters
+      })
+    })
+
+    fetch('http://localhost:3000/favorites')
+    .then(res => res.json())
+    .then(favorites => {
+      this.setState({
+        userFavorites: favorites
       })
     })
   }
@@ -89,13 +98,25 @@ class App extends React.Component{
     .then(res => res.json())
     .then(favoriteObj => {
       this.setState({
-        myFavorites: [...this.state.myFavorites, character]
+        myFavorites: [...this.state.myFavorites, character],
+        userFavorites: [...this.state.userFavorites, favoriteObj]
       })
     })
   }
 
+
+
   deleteFavorite = (character) => {
-    console.log('deleting this favorite')
+    fetch('http://localhost:3000/favorites/', {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({character_id: character.id})
+    })
+    .then(res => res.json())
+    .then(charObj => console.log(charObj))
   }
 
    render(){
