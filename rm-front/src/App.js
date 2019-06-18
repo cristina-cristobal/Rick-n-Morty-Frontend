@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './containers/header'
 import HomeBody from './containers/HomeBody'
 import FavoritesBody from './containers/FavoritesBody'
+import {Route} from 'react-router-dom'
 
 // const URL = 'https://rickandmortyapi.com/api/character/'
 const URL = 'http://localhost:3000/characters'
@@ -39,9 +40,8 @@ class App extends React.Component{
     }
 
   removeFromFavorites = (characterObj) => {
-    let myFavoritesCopy = [...this.state.myFavorites]
       this.setState({
-        myFavorites: [...myFavoritesCopy.filter(character => character !== characterObj)]
+        myFavorites: [...this.state.myFavorites.filter(character => character !== characterObj)]
       })
   }
 
@@ -75,22 +75,32 @@ class App extends React.Component{
       return(
         <div>
           <Header />
-          <FavoritesBody
-          favorites={this.state.myFavorites}
-          handleCardClick={this.removeFromFavorites}
-          addToSelected={this.addToSelected}
-          selectedCharacters={this.state.selectedCharacters}
-          characters={this.state.allCharacters}
-          removeSelected={this.removeSelected}
-          />
-          <HomeBody
-          allCharacters={this.getAllCharacters()}
-          handleCardClick={this.addToFavorites}
-          selectedCharacters={this.state.selectedCharacters}
-          addToSelected={this.addToSelected}
-          characters={this.state.allCharacters}
-          removeSelected={this.removeSelected}
-          favorites={this.state.myFavorites}
+          <Route exact path='/favorites' render={() => {return (
+
+            <FavoritesBody
+            favorites={this.state.myFavorites}
+            handleCardClick={this.removeFromFavorites}
+            addToSelected={this.addToSelected}
+            selectedCharacters={this.state.selectedCharacters}
+            characters={this.state.allCharacters}
+            removeSelected={this.removeSelected}
+            />
+
+          )}}/>
+
+
+
+          <Route exact path='/' render={() => {return (
+            <HomeBody
+            allCharacters={this.getAllCharacters()}
+            handleCardClick={this.addToFavorites}
+            selectedCharacters={this.state.selectedCharacters}
+            addToSelected={this.addToSelected}
+            characters={this.state.allCharacters}
+            removeSelected={this.removeSelected}
+            favorites={this.state.myFavorites}
+            /> )
+          }}
           />
         </div>
       )
