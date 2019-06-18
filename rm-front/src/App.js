@@ -16,6 +16,7 @@ class App extends React.Component{
     }
   }
 
+
   componentDidMount(){
     fetch(URL)
     .then(res => res.json())
@@ -27,16 +28,16 @@ class App extends React.Component{
     })
   }
 
-  addToFavorites = (character) => {
-    let myFavoritesCopy = [...this.state.myFavorites]
-    if (this.state.myFavorites.length < 6){
-        this.setState({
-          myFavorites: [...myFavoritesCopy, character]
-        })
-      } else {
-        alert("You hit your limit! No more favorites for you!")
-      }
-    }
+  // addToFavorites = (character) => {
+  //   let myFavoritesCopy = [...this.state.myFavorites]
+  //   if (this.state.myFavorites.length < 6){
+  //       this.setState({
+  //         myFavorites: [...myFavoritesCopy, character]
+  //       })
+  //     } else {
+  //       alert("You hit your limit! No more favorites for you!")
+  //     }
+  //   }
 
   removeFromFavorites = (characterObj) => {
     let myFavoritesCopy = [...this.state.myFavorites]
@@ -70,6 +71,33 @@ class App extends React.Component{
     })
   }
 
+// when you add the character to your list of favorites, this will post it on the backend
+  postFavorite = (character) => {
+    let favoriteJoin = {
+      character_id: character.id,
+      user_id: 1
+    }
+
+    fetch('http://localhost:3000/favorites', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(favoriteJoin)
+    })
+    .then(res => res.json())
+    .then(favoriteObj => {
+      this.setState({
+        myFavorites: [...this.state.myFavorites, character]
+      })
+    })
+  }
+
+  deleteFavorite = (character) => {
+    console.log('deleting this favorite')
+  }
+
    render(){
      // debugger
       return(
@@ -82,6 +110,7 @@ class App extends React.Component{
           selectedCharacters={this.state.selectedCharacters}
           characters={this.state.allCharacters}
           removeSelected={this.removeSelected}
+          handleFavorite={this.deleteFavorite}
           />
           <HomeBody
           allCharacters={this.getAllCharacters()}
@@ -91,6 +120,7 @@ class App extends React.Component{
           characters={this.state.allCharacters}
           removeSelected={this.removeSelected}
           favorites={this.state.myFavorites}
+          handleFavorite={this.postFavorite}
           />
         </div>
       )

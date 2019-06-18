@@ -12,6 +12,7 @@ export default class FavoritesBody extends Component{
       selectedCharacters={this.props.selectedCharacters}
       characters={this.props.characters}
       removeSelected={this.props.removeSelected}
+      handleFavorite={this.props.handleFavorite}
       />
       </div>
     )

@@ -17,6 +17,7 @@ export default class FavoritesContainer extends Component {
           characters={this.props.characters}
           removeSelected={this.props.removeSelected}
           favorites={this.props.favorites}
+          handleFavorite={this.props.handleFavorite}
           />)}
         </div>
       </div>

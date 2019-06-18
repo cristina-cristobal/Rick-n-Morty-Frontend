@@ -42,7 +42,7 @@ const CharacterCard = (props) => {
           </div>
           </div>
         </div>
-        <button className="ui primary button" onClick={() => {props.handleCardClick(props.character)}}>
+        <button className="ui primary button" onClick={() => {props.handleFavorite(props.character)}} >
           {props.favorites.includes(props.character) ? "Remove from Favorites" : "Add to Favorites"}
           </button>
       </div>
