@@ -13,7 +13,6 @@ class App extends React.Component{
       allCharacters: [],
       myFavorites: [],
       selectedCharacters: [],
-      userFavorites: []
     }
   }
 
@@ -28,13 +27,30 @@ class App extends React.Component{
       })
     })
 
-    fetch('http://localhost:3000/favorites')
+    // fetch('http://localhost:3000/favorites')
+    // .then(res => res.json())
+    // .then(favorites => {
+    //   this.setState({
+    //     userFavorites: favorites
+    //   })
+    // })
+
+    fetch('http://localhost:3000/users')
     .then(res => res.json())
-    .then(favorites => {
+    .then(user => {
       this.setState({
-        userFavorites: favorites
+        myFavorites: user[0].characters
       })
     })
+
+    //   {console.log(user[0].characters)
+    // })
+
+    //
+    // this.setState({
+    //   renderFavorites: [...this.state.allCharacters.filter(char => this.state.userFavorites.includes(char))]
+    // })
+
   }
 
   // addToFavorites = (character) => {
@@ -47,6 +63,14 @@ class App extends React.Component{
   //       alert("You hit your limit! No more favorites for you!")
   //     }
   //   }
+
+  renderUserFavorites = () => {
+    // render corresponding characterObjs of those chars in userFavorites
+    // find by chararcter_id
+    this.setState({
+      renderFavorites: [...this.state.allCharacters.filter(char => this.state.userFavorites.includes(char.id))]
+    })
+  }
 
   removeFromFavorites = (characterObj) => {
     let myFavoritesCopy = [...this.state.myFavorites]
