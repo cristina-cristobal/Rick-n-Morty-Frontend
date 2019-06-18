@@ -7,7 +7,10 @@ class HomeBody extends Component {
     return(
       <div>
         <p>Character Container</p>
-        <CharacterContainer  allCharacters={this.props.allCharacters}/>
+        <CharacterContainer allCharacters={this.props.allCharacters}
+          backview={this.props.backview}
+          handleBtn={this.props.handleBtn}
+          myFavorites={this.props.myFavorites}/>
       </div>
     )
   }
