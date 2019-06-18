@@ -6,7 +6,7 @@ export default class FavoritesContainer extends Component {
     return(
       <div className='ui five column grid'>
         <div className='row'>
-        {this.props.myFavorites.map(characterObj =>
+        {this.props.favorites.map(characterObj =>
           <CharacterCard
           key={characterObj.id}
           character={characterObj}
@@ -16,6 +16,7 @@ export default class FavoritesContainer extends Component {
           selectedCharacters={this.props.selectedCharacters}
           characters={this.props.characters}
           removeSelected={this.props.removeSelected}
+          favorites={this.props.favorites}
           />)}
         </div>
       </div>

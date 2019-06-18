@@ -4,7 +4,7 @@ import CharacterCard from '../components/CharacterCard'
 export default class CharacterContainer extends Component {
   render(){
     return(
-      <div className='ui five column grid'>
+      <div className='ui six column grid'>
         <div className='row'>
             {this.props.allCharacters.map(characterObj =>
               <CharacterCard
@@ -16,6 +16,7 @@ export default class CharacterContainer extends Component {
               selectedCharacters={this.props.selectedCharacters}
               characters={this.props.characters}
               removeSelected={this.props.removeSelected}
+              favorites={this.props.favorites}
               />)}
         </div>
       </div>

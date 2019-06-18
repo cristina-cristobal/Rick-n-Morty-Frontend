@@ -6,7 +6,7 @@ export default class FavoritesBody extends Component{
     return(
       <div>
       <FavoritesContainer
-      myFavorites={this.props.myFavorites}
+      favorites={this.props.favorites}
       handleCardClick={this.props.handleCardClick}
       addToSelected={this.props.addToSelected}
       selectedCharacters={this.props.selectedCharacters}

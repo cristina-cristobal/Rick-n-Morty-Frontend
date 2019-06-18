@@ -71,7 +71,7 @@ class App extends React.Component{
         <div>
           <Header />
           <FavoritesBody
-          myFavorites={this.state.myFavorites}
+          favorites={this.state.myFavorites}
           handleCardClick={this.removeFromFavorites}
           addToSelected={this.addToSelected}
           selectedCharacters={this.state.selectedCharacters}
@@ -85,6 +85,7 @@ class App extends React.Component{
           addToSelected={this.addToSelected}
           characters={this.state.allCharacters}
           removeSelected={this.removeSelected}
+          favorites={this.state.myFavorites}
           />
         </div>
       )
