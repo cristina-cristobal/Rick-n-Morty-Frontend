@@ -29,17 +29,22 @@ class App extends React.Component{
 
   addToFavorites = (character) => {
     let myFavoritesCopy = [...this.state.myFavorites]
-    this.setState({
-      myFavorites: [...myFavoritesCopy, character]
-    })
-  }
+    if (this.state.myFavorites.length < 6){
+        this.setState({
+          myFavorites: [...myFavoritesCopy, character]
+        })
+      } else {
+        alert("You hit your limit! No more favorites for you!")
+      }
+    }
 
   removeFromFavorites = (characterObj) => {
     let myFavoritesCopy = [...this.state.myFavorites]
-    this.setState({
-      myFavorites: [...myFavoritesCopy.filter(character => character !== characterObj)]
-    })
+      this.setState({
+        myFavorites: [...myFavoritesCopy.filter(character => character !== characterObj)]
+      })
   }
+
 
   // will only render characters in CharacterContainer that are not in this.state.myFavorites
   getAllCharacters = () => {
