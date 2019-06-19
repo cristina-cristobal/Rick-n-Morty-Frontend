@@ -13,7 +13,8 @@ class App extends React.Component{
     this.state = {
       allCharacters: [],
       myFavorites: [],
-      selectedCharacters: []
+      selectedCharacters: [],
+      favIds: []
     }
   }
 
@@ -43,6 +44,14 @@ class App extends React.Component{
         myFavorites: user[0].characters
       })
     })
+
+    fetch('http://localhost:3000/favorites')
+      .then(res => res.json())
+      .then(favorites => {
+        this.setState({
+          favIds: favorites
+        })
+      })
 
     //   {console.log(user[0].characters)
     // })
@@ -123,7 +132,8 @@ class App extends React.Component{
     .then(res => res.json())
     .then(favoriteObj => {
       this.setState({
-        myFavorites: [...this.state.myFavorites, character]
+        myFavorites: [...this.state.myFavorites, character],
+        favIds: [...this.state.favIds, favoriteObj]
       })
     })
   }
