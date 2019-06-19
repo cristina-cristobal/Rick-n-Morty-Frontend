@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './containers/header'
 import HomeBody from './containers/HomeBody'
 import FavoritesBody from './containers/FavoritesBody'
+import {Route} from 'react-router-dom'
 
 // const URL = 'https://rickandmortyapi.com/api/character/'
 const URL = 'http://localhost:3000/characters'
@@ -12,7 +13,7 @@ class App extends React.Component{
     this.state = {
       allCharacters: [],
       myFavorites: [],
-      selectedCharacters: [],
+      selectedCharacters: []
     }
   }
 
@@ -64,13 +65,13 @@ class App extends React.Component{
   //     }
   //   }
 
-  renderUserFavorites = () => {
-    // render corresponding characterObjs of those chars in userFavorites
-    // find by chararcter_id
-    this.setState({
-      renderFavorites: [...this.state.allCharacters.filter(char => this.state.userFavorites.includes(char.id))]
-    })
-  }
+  // renderUserFavorites = () => {
+  //   // render corresponding characterObjs of those chars in userFavorites
+  //   // find by chararcter_id
+  //   this.setState({
+  //     renderFavorites: [...this.state.allCharacters.filter(char => this.state.userFavorites.includes(char.id))]
+  //   })
+  // }
 
   removeFromFavorites = (characterObj) => {
     let myFavoritesCopy = [...this.state.myFavorites]
@@ -122,8 +123,7 @@ class App extends React.Component{
     .then(res => res.json())
     .then(favoriteObj => {
       this.setState({
-        myFavorites: [...this.state.myFavorites, character],
-        userFavorites: [...this.state.userFavorites, favoriteObj]
+        myFavorites: [...this.state.myFavorites, character]
       })
     })
   }
@@ -148,15 +148,18 @@ class App extends React.Component{
       return(
         <div>
           <Header />
-          <FavoritesBody
-          favorites={this.state.myFavorites}
-          handleCardClick={this.removeFromFavorites}
-          addToSelected={this.addToSelected}
-          selectedCharacters={this.state.selectedCharacters}
-          characters={this.state.allCharacters}
-          removeSelected={this.removeSelected}
-          handleFavorite={this.deleteFavorite}
-          />
+          <Route exact path='/favorites' render={() => {return (
+            <FavoritesBody
+            favorites={this.state.myFavorites}
+            handleCardClick={this.removeFromFavorites}
+            addToSelected={this.addToSelected}
+            selectedCharacters={this.state.selectedCharacters}
+            characters={this.state.allCharacters}
+            removeSelected={this.removeSelected}
+            handleFavorite={this.deleteFavorite}
+            />
+                  )}}/>
+ <Route exact path='/' render={() => {return (
           <HomeBody
           allCharacters={this.getAllCharacters()}
           handleCardClick={this.addToFavorites}
@@ -166,6 +169,8 @@ class App extends React.Component{
           removeSelected={this.removeSelected}
           favorites={this.state.myFavorites}
           handleFavorite={this.postFavorite}
+          /> )
+          }}
           />
         </div>
       )
