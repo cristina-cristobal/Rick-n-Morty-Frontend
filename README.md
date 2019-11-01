@@ -1,6 +1,6 @@
 # Rick-n-Morty-Frontend
 
-![rm-demo](/rm-demo.gif)
+![rm-demo](/rm-front/rm-demo.gif)
 
 Aliens are fun!
 Traveling to different dimensions is wacky!
