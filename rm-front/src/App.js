@@ -83,6 +83,7 @@ class App extends React.Component{
   // }
 
   removeFromFavorites = (characterObj) => {
+    console.log(characterObj);
     let myFavoritesCopy = [...this.state.myFavorites]
       this.setState({
         myFavorites: [...myFavoritesCopy.filter(character => character !== characterObj)]
